@@ -1,0 +1,315 @@
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Melodía Visual Rococó</title> <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet"> <style> 
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    overflow: hidden;
+
+    /* Fondo base con patrón ornamental */
+    background: url("patron.png") repeat;
+    background-size: 400px 400px;
+}
+.title-frame {
+    position: relative;
+    display: inline-block;
+    padding: 40px 60px; /* más espacio para el marco */
+    background: url("ornamento.png") center/contain no-repeat; /* aquí va tu imagen ornamental */
+    background-color: transparent;
+}
+
+.title-frame h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+    color: #080C18; /* dorado oscuro que contrasta con el fondo */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4); /* sombra para resaltar */
+    margin: 0;
+}
+.vinyl-background {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Capa pastel animada encima del patrón */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f8d7ff, #d8b0ff, #b0e0ff);
+    background-size: 600% 600%;
+    animation: pastelShift 20s ease infinite;
+    opacity: 0.6; /* transparencia para dejar ver el patrón */
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes pastelShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5em;
+    color: #d8b0ff;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    margin-bottom: 15px;
+}
+
+.music-box-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 420px;
+    height: 420px;
+    background: url("patron2.png") center/cover no-repeat; /* tu imagen ornamental */
+    border-radius: 25px; /* mantiene forma rectangular con esquinas redondeadas */
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+/* Arabescos dorados estilo rococó */
+.arabesco {
+    position: absolute;
+    font-size: 40px;
+    color: gold;
+    opacity: 0;
+    animation: arabescoGlow 6s forwards;
+    pointer-events: none;
+}
+
+@keyframes arabescoGlow {
+    0% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(20deg); }
+    100% { opacity: 0; transform: scale(0.8) rotate(-20deg); }
+}
+
+.music-box-container img {
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+    object-fit: contain;
+    animation: subtleSpin 12s infinite linear;
+}
+
+@keyframes subtleSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Flor (imagen de lirio) */
+.flower {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    opacity: 0;
+    animation: bloom 1s forwards, sway 3s infinite ease-in-out, pulse 4s infinite ease-in-out;
+    pointer-events: none;
+    filter: hue-rotate(0deg);
+}
+
+@keyframes bloom {
+    from { opacity: 0; transform: scale(0); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes sway {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); filter: hue-rotate(0deg); }
+    50% { transform: scale(1.2); filter: hue-rotate(30deg); }
+    100% { transform: scale(1); filter: hue-rotate(0deg); }
+}
+
+/* Corazones flotantes */
+.heart {
+    position: absolute;
+    font-size: 22px;
+    color: rgb(149, 0, 230);
+    opacity: 0;
+    animation: floatHeart 4s forwards;
+    pointer-events: none;
+}
+
+@keyframes floatHeart {
+    0% { transform: translateY(0) scale(0.5); opacity: 1; }
+    50% { transform: translateY(-50px) scale(1); opacity: 0.7; }
+    100% { transform: translateY(-100px) scale(1.2); opacity: 0; }
+}
+
+/* Destellos dorados */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: gold;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Radial de fondo */
+.color-burst {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+    pointer-events: none;
+    opacity: 0;
+    animation: burst 2s forwards;
+}
+
+@keyframes burst {
+    from { opacity: 1; transform: scale(0); }
+    to { opacity: 0; transform: scale(3); }
+}
+
+audio {
+    margin-top: 15px;
+    width: 70%;
+    max-width: 350px;
+    border-radius: 12px;
+    padding: 8px;
+    background-color: #080C18;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* Estilo para el selector de canciones */
+select {
+    margin-top: 15px;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 12px;
+    padding: 8px;
+    background: rgba(197, 107, 211, 0.8);
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.2em;
+    color: #7b00ff; /* tono púrpura elegante */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+select:hover {
+    background: rgb(0, 0, 0);
+    transform: scale(1.05);
+}
+
+/* Notas musicales decorativas */
+.note {
+    position: absolute;
+    font-size: 24px;
+    color: rgb(1, 1, 1);
+    animation: float 5s infinite ease-in-out;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { transform: translateY(-50px); opacity: 0.7; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+</style> </head> <body>
+
+<div class="title-frame">
+  <h1>For Everrito</h1>
+</div>
+
+<div class="music-box-container">
+    <div class="vinyl-background">
+        <img id="musicBoxImage" src="caja.png" alt="Disco de Vinilo Rococó">
+    </div>
+</div>
+<audio id="player" controls autoplay loop> <source src="cancion1.mp3", type="audio/mpeg"> Tu navegador no soporta el elemento de audio. </audio><source src="cancion2.mp3"><s><s>
+
+<select id="selectorCancion"> <option value="cancion1.mp3">First Song ☆*: .｡. o(≧▽≦)o .｡.:*☆</option> <option value="cancion2.mp3">Song 2 ╰(*°▽°*)╯</option> <option value="cancion3.mp3">Song 3 OMG (❁´◡`❁)<option value="cancion4.mp3">Song 4 []~(￣▽￣)~* <option value="cancion5.mp3">Last Song hehe (●'◡'●)
+<!-- Notas musicales decorativas --> <div class="note" style="left:10%; top:80%;">♪</div> <div class="note" style="left:80%; top:70%;">♫</div> <div class="note" style="left:50%; top:90%;">♬</div>
+
+<script> document.addEventListener('DOMContentLoaded', function() { const body = document.body; const player = document.getElementById("player"); const selector = document.getElementById("selectorCancion");
+const musicBoxImage = document.getElementById("musicBoxImage");
+
+// Activar/desactivar animación según estado del audio
+player.addEventListener("play", function() {
+    musicBoxImage.classList.add("spinning");
+});
+
+player.addEventListener("pause", function() {
+    musicBoxImage.classList.remove("spinning");
+});
+
+const colores = [
+    "linear-gradient(135deg, #bb73ff, #e0b0ff)",
+    "linear-gradient(135deg, #d8b0ff, #f0caff)",
+    "linear-gradient(135deg, #caa6ff, #f5d6ff)",
+    "linear-gradient(135deg, #b080ff, #e6baff)"
+];
+
+const lirios = ["lirio1.png", "lirio2.png"];
+
+selector.addEventListener("change", function() {
+    player.src = this.value;
+    player.play();
+});
+
+body.addEventListener('click', function(event) {
+    const musicBox = document.querySelector('.music-box-container');
+    const audioPlayer = document.querySelector('audio');
+
+    if (!musicBox.contains(event.target) && !audioPlayer.contains(event.target)) {
+        // Flor aleatoria
+        const flower = document.createElement('img');
+        flower.src = lirios[Math.floor(Math.random() * lirios.length)];
+        flower.classList.add('flower');
+        flower.style.left = (event.clientX - 30) + 'px';
+        flower.style.top = (event.clientY - 30) + 'px';
+        body.appendChild(flower);
+        flower.addEventListener('animationend', () => flower.remove());
+
+        // Corazón flotante
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = "❤";
+        heart.style.left = event.clientX + 'px';
+        heart.style.top = event.clientY + 'px';
+        body.appendChild(heart);
+        heart.addEventListener('animationend', () => heart.remove());
+
+        // Destello dorado
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = (event.clientX + Math.random()*40 - 20) + 'px';
+        sparkle.style.top = (event.clientY + Math.random()*40 - 20) + 'px';
+        body.appendChild(sparkle);
+        sparkle.addEventListener('animationend', () => sparkle.remove());
+        // Arabesco dorado
+const arabesco = document.createElement('div');
+arabesco.classList.add('arabesco');
+arabesco.textContent = "✿"; // puedes cambiar por otro símbolo decorativo
+arabesco.style.left = (event.clientX + Math.random()*60 - 30) + 'px';
+arabesco.style.top = (event.clientY + Math.random()*60 - 30) + 'px';
+body.appendChild(arabesco);
+arabesco.addEventListener('animationend', () => arabesco.remove());
+    }
+});
+
+}); </script>
